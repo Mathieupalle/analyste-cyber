@@ -3,7 +3,7 @@ services:
     build: ./docker/php
     container_name: cyber_app
     ports:
-      - "8080:80"
+      - "8090:80"
     volumes:
       - .:/var/www/html
     env_file: .env
@@ -20,7 +20,7 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3307:3306"
+      - "3308:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       # Scripts exécutés automatiquement au PREMIER démarrage (base vide)
@@ -30,7 +30,7 @@ services:
     image: mongo:7
     container_name: cyber_mongo
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongo_data:/data/db
 
@@ -40,7 +40,7 @@ services:
     environment:
       PMA_HOST: mysql
     ports:
-      - "8081:80"
+      - "8091:80"
     depends_on:
       - mysql
 
