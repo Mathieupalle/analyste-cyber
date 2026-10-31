@@ -581,6 +581,47 @@ td {
     gap: 12px;
 }
 
+/* salle 4 : étapes à remettre dans l'ordre */
+.liste-etapes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 720px;
+    list-style: none;
+}
+
+.etape-attaque {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: grab;
+}
+
+.etape-attaque.en-deplacement {
+    opacity: 0.4;
+}
+
+.etape-boutons {
+    display: flex;
+    gap: 6px;
+}
+
+.etape-boutons button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--bordure-claire);
+    border-radius: 6px;
+    background: none;
+    color: var(--texte);
+    cursor: pointer;
+}
+
+.etape-boutons button:hover {
+    border-color: var(--cyan);
+}
+
 /* Fin de partie */
 .page-fin {
     display: flex;

@@ -1,14 +1,32 @@
-<!-- version simple : le joueur écrit l'ordre (le glisser-déposer viendra ensuite) -->
-<div class="grille-indices">
-    <div class="carte fiche">
-        <h3>Etapes à remettre dans l'ordre</h3>
-        <ul class="mono">
-            <li>exfiltration : envoi du fichier clients vers l'extérieur</li>
-            <li>phishing : faux e-mail envoyé à s.martin</li>
-            <li>connexion_reussie : l'attaquant entre sur le serveur</li>
-            <li>force_brute : essais de mots de passe</li>
-        </ul>
-    </div>
-</div>
+<p class="petit-texte">Fais glisser les cartes pour les mettre dans l'ordre (ou utilise les flèches).</p>
 
-<p class="petit-texte">Écris les 4 étapes dans l'ordre, séparées par des virgules.</p>
+<ol class="liste-etapes" id="liste-etapes">
+    <li class="carte etape-attaque" draggable="true" data-valeur="exfiltration">
+        <span class="etape-texte"><strong>Vol de données</strong> : le fichier clients est envoyé vers un serveur externe</span>
+        <span class="etape-boutons">
+            <button type="button" class="monter" title="Monter">&uarr;</button>
+            <button type="button" class="descendre" title="Descendre">&darr;</button>
+        </span>
+    </li>
+    <li class="carte etape-attaque" draggable="true" data-valeur="phishing">
+        <span class="etape-texte"><strong>Phishing</strong> : un faux e-mail est envoyé à s.martin</span>
+        <span class="etape-boutons">
+            <button type="button" class="monter" title="Monter">&uarr;</button>
+            <button type="button" class="descendre" title="Descendre">&darr;</button>
+        </span>
+    </li>
+    <li class="carte etape-attaque" draggable="true" data-valeur="connexion_reussie">
+        <span class="etape-texte"><strong>Connexion réussie</strong> : l'attaquant entre sur le serveur</span>
+        <span class="etape-boutons">
+            <button type="button" class="monter" title="Monter">&uarr;</button>
+            <button type="button" class="descendre" title="Descendre">&darr;</button>
+        </span>
+    </li>
+    <li class="carte etape-attaque" draggable="true" data-valeur="force_brute">
+        <span class="etape-texte"><strong>Force brute</strong> : l'attaquant essaie des mots de passe</span>
+        <span class="etape-boutons">
+            <button type="button" class="monter" title="Monter">&uarr;</button>
+            <button type="button" class="descendre" title="Descendre">&darr;</button>
+        </span>
+    </li>
+</ol>
