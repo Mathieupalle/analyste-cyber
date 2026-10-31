@@ -6,6 +6,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controller\AccueilController;
 use App\Controller\AuthController;
+use App\Controller\PartieController;
 
 // on récupère l'adresse demandée, sans les paramètres après le ?
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -29,6 +30,26 @@ switch ($url) {
     case '/deconnexion':
         $controller = new AuthController();
         $controller->deconnexion();
+        break;
+
+    case '/partie/nouvelle':
+        $controller = new PartieController();
+        $controller->nouvelle();
+        break;
+
+    case '/partie':
+        $controller = new PartieController();
+        $controller->salle();
+        break;
+
+    case '/partie/repondre':
+        $controller = new PartieController();
+        $controller->repondre();
+        break;
+
+    case '/partie/fin':
+        $controller = new PartieController();
+        $controller->fin();
         break;
 
     default:

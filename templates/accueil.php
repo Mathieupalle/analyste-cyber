@@ -11,10 +11,13 @@
                 un mot de passe trop simple.
             </p>
             <div class="boutons">
-                <a href="/partie/nouvelle" class="btn btn-principal">
-                    <img src="/assets/img/fleche.svg" alt="" width="18" height="18">
-                    Commencer l'enquête
-                </a>
+                <form method="post" action="/partie/nouvelle">
+                    <input type="hidden" name="csrf_token" value="<?= \App\Security\Csrf::getToken() ?>">
+                    <button type="submit" class="btn btn-principal">
+                        <img src="/assets/img/fleche.svg" alt="" width="18" height="18">
+                        Commencer l'enquête
+                    </button>
+                </form>
                 <a href="/classement" class="btn btn-secondaire">Voir le classement</a>
             </div>
             <ul class="infos">

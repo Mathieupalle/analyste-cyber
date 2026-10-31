@@ -106,7 +106,15 @@ h3 {
 
 .btn-principal {
     background-color: var(--cyan);
+    border: none;
     color: #062430;
+}
+
+/* pour que les <button> ressemblent aux liens */
+button.btn {
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 .btn-principal:hover {
@@ -224,6 +232,10 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
+}
+
+.boutons .btn {
     width: 100%;
 }
 
@@ -361,6 +373,207 @@ td {
     padding: 4px 0;
     font-size: 14px;
     color: var(--texte-secondaire);
+}
+
+/* Partie : barre de jeu */
+.barre-jeu {
+    background-color: #0E1626;
+    border-bottom: 1px solid var(--bordure);
+}
+
+.barre-jeu-contenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.progression {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+}
+
+.etape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--bordure-claire);
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texte-discret);
+}
+
+.etape-finie {
+    background-color: #0F3B2E;
+    border-color: #166B52;
+    color: var(--vert);
+}
+
+.etape-en-cours {
+    background-color: var(--cyan);
+    border-color: var(--cyan);
+    color: #062430;
+}
+
+.compteurs {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--texte-secondaire);
+}
+
+.chrono {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--jaune);
+}
+
+/* Partie : salle */
+.salle-jeu {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 32px;
+    padding-bottom: 48px;
+}
+
+.salle-texte h1 {
+    font-size: 28px;
+    margin: 8px 0;
+}
+
+.formulaire-reponse {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    max-width: 520px;
+}
+
+.formulaire-reponse label {
+    font-weight: 600;
+}
+
+.formulaire-reponse input {
+    padding: 12px 14px;
+    border: 1px solid var(--bordure-claire);
+    border-radius: 8px;
+    background-color: var(--fond);
+    color: var(--texte);
+    font-size: 15px;
+}
+
+.formulaire-reponse .message {
+    margin-top: 0;
+}
+
+.email {
+    padding: 20px;
+    max-width: 720px;
+}
+
+.email p {
+    margin-bottom: 8px;
+}
+
+.email hr {
+    border: none;
+    border-top: 1px solid var(--bordure);
+    margin: 12px 0;
+}
+
+.faux-lien {
+    color: var(--cyan-clair);
+    text-decoration: underline;
+}
+
+.tableau-journaux {
+    padding: 8px 12px;
+    overflow-x: auto;
+}
+
+.tableau-journaux table {
+    font-size: 13px;
+}
+
+.grille-indices {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.fiche {
+    padding: 20px;
+}
+
+.fiche h3 {
+    margin-bottom: 12px;
+}
+
+.fiche li {
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--texte-secondaire);
+}
+
+.fiche .libelle {
+    color: var(--texte);
+    margin-right: 6px;
+}
+
+.salle-contenu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Fin de partie */
+.page-fin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 48px;
+    padding-bottom: 64px;
+    text-align: center;
+}
+
+.badge-succes {
+    background-color: var(--cyan-fonce);
+    border: 1px solid #155E75;
+    color: var(--cyan-clair);
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+}
+
+.score-final {
+    padding: 28px;
+    text-align: center;
+}
+
+.score-chiffre {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--cyan);
+}
+
+.page-fin .boutons {
+    max-width: 460px;
 }
 
 /* Formulaires (inscription, connexion) */
@@ -508,6 +721,23 @@ td {
     .pied-de-page-contenu {
         flex-direction: row;
         justify-content: space-between;
+    }
+
+    .boutons .btn {
+        width: auto;
+    }
+
+    .grille-indices {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .score {
+        flex-direction: row;
+    }
+
+    .score-final,
+    .calcul-score {
+        flex: 1;
     }
 }
 
