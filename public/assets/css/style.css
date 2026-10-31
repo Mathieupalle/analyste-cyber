@@ -495,6 +495,34 @@ td {
     text-decoration: underline;
 }
 
+/* indices */
+.zone-indices {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 520px;
+}
+
+#liste-indices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.message-indice {
+    margin-top: 0;
+    background-color: #2A2210;
+    border: 1px solid #6B5314;
+    color: var(--jaune);
+}
+
+#bouton-indice:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
 /* salle 1 : éléments cliquables de l'e-mail */
 .zone {
     background: none;

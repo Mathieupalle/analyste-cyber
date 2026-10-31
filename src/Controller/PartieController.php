@@ -74,6 +74,19 @@ class PartieController
         echo json_encode(['resultat' => $resultat]);
     }
 
+    // bouton "Demander un indice" (appelé en JavaScript avec fetch)
+    public function indice(): void
+    {
+        Auth::requireLogin();
+        Csrf::verifier();
+
+        $partieService = new PartieService();
+        $resultat = $partieService->demanderIndice($_SESSION['utilisateur']['id']);
+
+        header('Content-Type: application/json');
+        echo json_encode($resultat);
+    }
+
     public function fin(): void
     {
         Auth::requireLogin();

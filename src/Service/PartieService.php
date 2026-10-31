@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Repository\DemandeIndiceRepository;
 use App\Repository\EnigmeRepository;
+use App\Repository\IndiceRepository;
 use App\Repository\JournalRepository;
 use App\Repository\PartieRepository;
 use App\Repository\TentativeRepository;
@@ -12,6 +13,7 @@ class PartieService
 {
     const NB_SALLES = 4;
     const DUREE_MAX = 1200; // 20 minutes en secondes
+    const NB_INDICES_MAX = 2; // par salle
 
     private PartieRepository $partieRepository;
     private EnigmeRepository $enigmeRepository;
@@ -111,6 +113,52 @@ class PartieService
         }
 
         return 'juste';
+    }
+
+    // donne un indice pour la salle en cours (mentor IA, sinon indice de secours)
+    // renvoie un tableau avec le résultat, et le texte de l'indice si tout va bien
+    public function demanderIndice(int $idUtilisateur): array
+    {
+        $partie = $this->getPartieEnCours($idUtilisateur);
+
+        if ($partie === null) {
+            return ['resultat' => 'expire'];
+        }
+
+        $numeroSalle = $this->getSalleCourante($partie['id_partie']);
+        $enigme = $this->enigmeRepository->findBySalle($numeroSalle);
+
+        $numeroIndice = $this->demandeIndiceRepository->compterPourEnigme($partie['id_partie'], $enigme['id_enigme']) + 1;
+
+        if ($numeroIndice > self::NB_INDICES_MAX) {
+            return ['resultat' => 'max'];
+        }
+
+        $indiceRepository = new IndiceRepository();
+        $indiceSecours = $indiceRepository->findTexte($enigme['id_enigme'], $numeroIndice);
+
+        // on essaie d'abord le mentor IA
+        $mistralService = new MistralService();
+        $indiceIa = $mistralService->demanderIndice($enigme['titre'], $enigme['intitule'], $indiceSecours);
+
+        // si l'IA ne répond pas, ou si elle donne la réponse par erreur, on garde l'indice de secours
+        $reponseAttendue = $this->enigmeRepository->findReponse($enigme['id_enigme']);
+
+        if ($indiceIa !== null && stripos($indiceIa, $reponseAttendue) === false) {
+            $texte = $indiceIa;
+            $source = 'ia';
+        } else {
+            $texte = $indiceSecours;
+            $source = 'secours';
+        }
+
+        $this->demandeIndiceRepository->create($partie['id_partie'], $enigme['id_enigme'], $source, date('Y-m-d H:i:s'));
+
+        return [
+            'resultat' => 'ok',
+            'texte' => $texte,
+            'source' => $source,
+        ];
     }
 
     private function terminerGagnee(array $partie): void

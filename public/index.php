@@ -47,6 +47,11 @@ switch ($url) {
         $controller->repondre();
         break;
 
+    case '/partie/indice':
+        $controller = new PartieController();
+        $controller->indice();
+        break;
+
     case '/partie/fin':
         $controller = new PartieController();
         $controller->fin();

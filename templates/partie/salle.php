@@ -16,8 +16,8 @@
             </ol>
 
             <div class="compteurs">
-                <span><?= $compteurs['indices'] ?> indice(s)</span>
-                <span><?= $compteurs['erreurs'] ?> erreur(s)</span>
+                <span><span id="nb-indices"><?= $compteurs['indices'] ?></span> indice(s)</span>
+                <span><span id="nb-erreurs"><?= $compteurs['erreurs'] ?></span> erreur(s)</span>
                 <span class="chrono mono" id="chrono" data-secondes="<?= $secondesRestantes ?>">--:--</span>
             </div>
         </div>
@@ -52,6 +52,15 @@
 
             <button type="submit" class="btn btn-principal">Valider ma réponse</button>
         </form>
+
+        <!-- indices : mentor IA ou indice de secours -->
+        <div class="zone-indices">
+            <div id="liste-indices"></div>
+            <button type="button" class="btn btn-secondaire" id="bouton-indice">
+                <img src="/assets/img/ampoule.svg" alt="" width="18" height="18">
+                Demander un indice (-50 points)
+            </button>
+        </div>
     </section>
 
 </main>
