@@ -18,7 +18,10 @@ La PME Calanques Bio (fictive) a été piratée. Le joueur est analyste junior e
 cp .env.example .env
 docker compose up -d --build
 docker compose exec app composer install
+docker compose exec app php database/mongo/import-journaux.php
 ```
+
+La dernière commande importe les faux journaux de connexion (salle 2) dans MongoDB.
 
 - site : http://localhost:8090
 - phpMyAdmin : http://localhost:8091

@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Repository\DemandeIndiceRepository;
 use App\Repository\EnigmeRepository;
+use App\Repository\JournalRepository;
 use App\Repository\PartieRepository;
 use App\Repository\TentativeRepository;
 
@@ -62,6 +63,14 @@ class PartieService
     public function getEnigme(int $numeroSalle): ?array
     {
         return $this->enigmeRepository->findBySalle($numeroSalle);
+    }
+
+    // journaux de connexion de la salle 2 (MongoDB)
+    public function getJournaux(): array
+    {
+        $journalRepository = new JournalRepository();
+
+        return $journalRepository->findAll();
     }
 
     public function getCompteurs(int $idPartie): array

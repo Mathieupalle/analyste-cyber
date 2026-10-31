@@ -46,6 +46,12 @@ class PartieController
         $compteurs = $partieService->getCompteurs($partie['id_partie']);
         $secondesRestantes = PartieService::DUREE_MAX - $partie['secondes'];
 
+        // la salle 2 a besoin des journaux de connexion
+        $journaux = [];
+        if ($numeroSalle === 2) {
+            $journaux = $partieService->getJournaux();
+        }
+
         $titre = 'Salle ' . $numeroSalle;
 
         require __DIR__ . '/../../templates/header.php';

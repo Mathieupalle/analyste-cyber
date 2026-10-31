@@ -60,3 +60,6 @@
 <?php if ($numeroSalle === 1) : ?>
     <script src="/assets/js/salle-1.js"></script>
 <?php endif; ?>
+<?php if ($numeroSalle === 2) : ?>
+    <script src="/assets/js/salle-2.js"></script>
+<?php endif; ?>
