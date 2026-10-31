@@ -363,6 +363,108 @@ td {
     color: var(--texte-secondaire);
 }
 
+/* Formulaires (inscription, connexion) */
+.page-formulaire {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.formulaire {
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 28px 20px;
+}
+
+.formulaire h1 {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.formulaire form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.formulaire label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texte-secondaire);
+    margin-top: 8px;
+}
+
+.formulaire input[type="text"],
+.formulaire input[type="email"],
+.formulaire input[type="password"] {
+    padding: 12px 14px;
+    border: 1px solid var(--bordure-claire);
+    border-radius: 8px;
+    background-color: var(--fond);
+    color: var(--texte);
+    font-size: 15px;
+}
+
+.formulaire input:focus {
+    outline: 2px solid var(--cyan);
+}
+
+.formulaire .aide {
+    font-size: 12px;
+    color: var(--texte-discret);
+}
+
+.formulaire .case {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+}
+
+.formulaire button {
+    margin-top: 16px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.lien-bas {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--texte-secondaire);
+    text-align: center;
+}
+
+.message {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.message-erreur {
+    background-color: var(--rouge-fonce);
+    border: 1px solid #6B1D2C;
+    color: var(--rouge-clair);
+}
+
+.message-succes {
+    background-color: #0F3B2E;
+    border: 1px solid #166B52;
+    color: var(--vert);
+}
+
+/* menu quand on est connecté */
+.pseudo {
+    font-weight: 600;
+}
+
+.menu .btn-secondaire {
+    background: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
 /* Pied de page */
 .pied-de-page {
     border-top: 1px solid var(--bordure);

@@ -24,8 +24,17 @@
         <nav class="menu" id="menu">
             <a href="/#salles">Les salles</a>
             <a href="/classement">Classement</a>
-            <a href="/connexion">Se connecter</a>
-            <a href="/inscription" class="btn btn-principal">Créer un compte</a>
+
+            <?php if (isset($_SESSION['utilisateur'])) : ?>
+                <span class="pseudo"><?= htmlspecialchars($_SESSION['utilisateur']['pseudo']) ?></span>
+                <form method="post" action="/deconnexion">
+                    <input type="hidden" name="csrf_token" value="<?= \App\Security\Csrf::getToken() ?>">
+                    <button type="submit" class="btn btn-secondaire">Se déconnecter</button>
+                </form>
+            <?php else : ?>
+                <a href="/connexion">Se connecter</a>
+                <a href="/inscription" class="btn btn-principal">Créer un compte</a>
+            <?php endif; ?>
         </nav>
     </div>
 </header>
