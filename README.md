@@ -84,3 +84,7 @@ heroku open
 - le fichier `.env` n'est pas envoyé (il est dans le `.gitignore`), les mots de passe sont dans les variables d'Heroku (`heroku config`)
 - les erreurs PHP ne s'affichent pas aux visiteurs
 - sans clé Groq, les indices de secours s'affichent quand même
+
+## Historique Git
+
+Projet développé en local puis versionné en fin de développement, avec un commit par fonctionnalité.
