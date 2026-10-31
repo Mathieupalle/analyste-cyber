@@ -51,33 +51,16 @@
         </div>
 
         <div class="grille-salles">
-            <article class="carte salle">
-                <div class="icone-salle"><img src="/assets/img/mail.svg" alt="" width="22" height="22"></div>
-                <p class="sur-titre">SALLE 1</p>
-                <h3>La boîte mail</h3>
-                <p class="description">Trouve l'e-mail de phishing et les 3 détails qui le trahissent.</p>
-            </article>
-
-            <article class="carte salle">
-                <div class="icone-salle"><img src="/assets/img/journaux.svg" alt="" width="22" height="22"></div>
-                <p class="sur-titre">SALLE 2</p>
-                <h3>Les journaux de connexion</h3>
-                <p class="description">Filtre les connexions et trouve l'adresse IP de l'attaquant.</p>
-            </article>
-
-            <article class="carte salle">
-                <div class="icone-salle"><img src="/assets/img/cle.svg" alt="" width="22" height="22"></div>
-                <p class="sur-titre">SALLE 3</p>
-                <h3>Le mot de passe</h3>
-                <p class="description">Retrouve le mot de passe que l'attaquant a deviné.</p>
-            </article>
-
-            <article class="carte salle">
-                <div class="icone-salle"><img src="/assets/img/rapport.svg" alt="" width="22" height="22"></div>
-                <p class="sur-titre">SALLE 4</p>
-                <h3>Le rapport</h3>
-                <p class="description">Remets les étapes de l'attaque dans le bon ordre.</p>
-            </article>
+            <?php foreach ($salles as $salle) : ?>
+                <article class="carte salle">
+                    <div class="icone-salle">
+                        <img src="/assets/img/salle-<?= $salle['numero_ordre'] ?>.svg" alt="" width="22" height="22">
+                    </div>
+                    <p class="sur-titre">SALLE <?= $salle['numero_ordre'] ?></p>
+                    <h3><?= htmlspecialchars($salle['titre']) ?></h3>
+                    <p class="description"><?= htmlspecialchars($salle['description']) ?></p>
+                </article>
+            <?php endforeach; ?>
         </div>
     </section>
 
