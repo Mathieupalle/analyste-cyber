@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Repository\DemandeIndiceRepository;
 use App\Repository\EnigmeRepository;
+use App\Repository\EvenementRepository;
 use App\Repository\IndiceRepository;
 use App\Repository\JournalRepository;
 use App\Repository\PartieRepository;
@@ -19,6 +20,7 @@ class PartieService
     private EnigmeRepository $enigmeRepository;
     private TentativeRepository $tentativeRepository;
     private DemandeIndiceRepository $demandeIndiceRepository;
+    private EvenementRepository $evenementRepository;
 
     public function __construct()
     {
@@ -26,6 +28,7 @@ class PartieService
         $this->enigmeRepository = new EnigmeRepository();
         $this->tentativeRepository = new TentativeRepository();
         $this->demandeIndiceRepository = new DemandeIndiceRepository();
+        $this->evenementRepository = new EvenementRepository();
     }
 
     // une seule partie en cours : on abandonne l'ancienne avant d'en créer une
@@ -34,7 +37,9 @@ class PartieService
         $maintenant = date('Y-m-d H:i:s');
 
         $this->partieRepository->abandonnerEnCours($idUtilisateur, $maintenant);
-        $this->partieRepository->create($idUtilisateur, $maintenant);
+        $idPartie = $this->partieRepository->create($idUtilisateur, $maintenant);
+
+        $this->evenementRepository->ajouter($idPartie, 'partie_demarree', 1, []);
     }
 
     // renvoie la partie en cours, ou null si elle n'existe pas ou si le temps est écoulé
@@ -50,6 +55,10 @@ class PartieService
 
         if ($partie['secondes'] >= self::DUREE_MAX) {
             $this->partieRepository->terminer($partie['id_partie'], 'perdue', null, date('Y-m-d H:i:s'));
+
+            $numeroSalle = $this->getSalleCourante($partie['id_partie']);
+            $this->evenementRepository->ajouter($partie['id_partie'], 'temps_ecoule', $numeroSalle, []);
+
             return null;
         }
 
@@ -102,9 +111,16 @@ class PartieService
 
         $this->tentativeRepository->create($partie['id_partie'], $enigme['id_enigme'], $reponse, $estCorrecte, date('Y-m-d H:i:s'));
 
+        $this->evenementRepository->ajouter($partie['id_partie'], 'reponse', $numeroSalle, [
+            'reponse' => $reponse,
+            'correcte' => $estCorrecte,
+        ]);
+
         if (!$estCorrecte) {
             return 'faux';
         }
+
+        $this->evenementRepository->ajouter($partie['id_partie'], 'salle_validee', $numeroSalle, []);
 
         // dernière salle réussie : fin de la partie
         if ($numeroSalle === self::NB_SALLES) {
@@ -154,6 +170,11 @@ class PartieService
 
         $this->demandeIndiceRepository->create($partie['id_partie'], $enigme['id_enigme'], $source, date('Y-m-d H:i:s'));
 
+        $this->evenementRepository->ajouter($partie['id_partie'], 'indice', $numeroSalle, [
+            'numero' => $numeroIndice,
+            'source' => $source,
+        ]);
+
         return [
             'resultat' => 'ok',
             'texte' => $texte,
@@ -169,6 +190,10 @@ class PartieService
         $score = $scoreService->calculer($partie['secondes'], $compteurs['indices'], $compteurs['erreurs']);
 
         $this->partieRepository->terminer($partie['id_partie'], 'gagnee', $score, date('Y-m-d H:i:s'));
+
+        $this->evenementRepository->ajouter($partie['id_partie'], 'partie_gagnee', self::NB_SALLES, [
+            'score' => $score,
+        ]);
     }
 
     // le classement avec la durée de chaque partie
