@@ -31,4 +31,4 @@ Pour remettre la base à zéro : `docker compose down -v` puis `docker compose u
 - [User stories](docs/user-stories.md)
 - [Wireframes](docs/wireframes)
 - [Maquettes](docs/maquettes)
-- [Fichier Figma](https://www.figma.com/design/rRX935ecQP3x8g8edA65Y9/Analyste-cyber---WF-et-Maquettes)
+- [Fichier Figma](https://www.figma.com/design/vK5Fla58ylnlidmQgRPFe0/Analyste-cyber---Wireframes-et-maquettes)
