@@ -31,6 +31,14 @@ const message = document.getElementById('message');
 formulaire.addEventListener('submit', function (event) {
     event.preventDefault();
 
+    // réponse vide (par exemple aucun élément cliqué dans la salle 1)
+    if (document.getElementById('reponse').value === '') {
+        message.hidden = false;
+        message.className = 'message message-erreur';
+        message.textContent = 'Choisis une réponse avant de valider.';
+        return;
+    }
+
     const donnees = new FormData(formulaire);
 
     fetch('/partie/repondre', {

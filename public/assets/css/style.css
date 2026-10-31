@@ -495,6 +495,28 @@ td {
     text-decoration: underline;
 }
 
+/* salle 1 : éléments cliquables de l'e-mail */
+.zone {
+    background: none;
+    border: 1px dashed var(--bordure-claire);
+    border-radius: 4px;
+    padding: 0 4px;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.zone:hover {
+    border-color: var(--cyan);
+}
+
+.zone.choisi {
+    background-color: var(--rouge-fonce);
+    border: 1px solid var(--rouge);
+    color: var(--rouge-clair);
+}
+
 .tableau-journaux {
     padding: 8px 12px;
     overflow-x: auto;

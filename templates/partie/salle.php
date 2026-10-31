@@ -39,8 +39,14 @@
         <form class="carte formulaire-reponse" id="formulaire-reponse">
             <input type="hidden" name="csrf_token" value="<?= \App\Security\Csrf::getToken() ?>">
 
-            <label for="reponse"><?= htmlspecialchars($enigme['intitule']) ?></label>
-            <input type="text" id="reponse" name="reponse" class="mono" autocomplete="off" required>
+            <?php if ($enigme['type_reponse'] === 'selection') : ?>
+                <!-- la réponse est remplie par le JavaScript de la salle -->
+                <p class="gras"><?= htmlspecialchars($enigme['intitule']) ?></p>
+                <input type="hidden" id="reponse" name="reponse">
+            <?php else : ?>
+                <label for="reponse"><?= htmlspecialchars($enigme['intitule']) ?></label>
+                <input type="text" id="reponse" name="reponse" class="mono" autocomplete="off" required>
+            <?php endif; ?>
 
             <p class="message" id="message" hidden></p>
 
@@ -51,3 +57,6 @@
 </main>
 
 <script src="/assets/js/salle.js"></script>
+<?php if ($numeroSalle === 1) : ?>
+    <script src="/assets/js/salle-1.js"></script>
+<?php endif; ?>
