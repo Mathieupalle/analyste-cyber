@@ -1,6 +1,7 @@
 -- Données de départ (scénario fictif)
 -- les IP 203.0.113.x sont des adresses réservées pour les exemples
 USE analyste_cyber;
+SET NAMES utf8mb4;
 
 INSERT INTO role (id_role, libelle) VALUES
 (1, 'joueur'),

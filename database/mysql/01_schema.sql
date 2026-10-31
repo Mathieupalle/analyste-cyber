@@ -2,6 +2,7 @@
 -- (sur JawsDB la base existe déjà, il faut enlever les 2 lignes suivantes)
 CREATE DATABASE IF NOT EXISTS analyste_cyber CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE analyste_cyber;
+SET NAMES utf8mb4;
 
 CREATE TABLE role (
     id_role INT AUTO_INCREMENT PRIMARY KEY,
