@@ -21,6 +21,17 @@ if (strlen($motDePasse) < 8) {
 }
 
 $utilisateurRepository = new UtilisateurRepository();
+
+if ($utilisateurRepository->pseudoExiste($pseudo)) {
+    echo "Ce pseudo est déjà utilisé.\n";
+    exit;
+}
+
+if ($utilisateurRepository->emailExiste($email)) {
+    echo "Cet e-mail est déjà utilisé.\n";
+    exit;
+}
+
 $utilisateurRepository->createAdmin($pseudo, $email, password_hash($motDePasse, PASSWORD_DEFAULT));
 
 echo "Compte admin créé pour " . $pseudo . "\n";
