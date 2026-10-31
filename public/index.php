@@ -1,6 +1,9 @@
 <?php
 
-session_start();
+session_start([
+    'cookie_httponly' => true, // le cookie de session n'est pas lisible en JavaScript
+    'cookie_samesite' => 'Lax', // il n'est pas envoyé depuis un autre site (protection en plus du CSRF)
+]);
 
 require __DIR__ . '/../vendor/autoload.php';
 

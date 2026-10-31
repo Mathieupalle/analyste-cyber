@@ -13,10 +13,28 @@ class Database
     public static function getConnection(): PDO
     {
         if (self::$pdo === null) {
-            $dsn = 'mysql:host=' . getenv('DB_HOST') . ';port=' . getenv('DB_PORT') . ';dbname=' . getenv('DB_NAME') . ';charset=utf8mb4';
+            // en local (Docker) : les variables du fichier .env
+            $hote = getenv('DB_HOST');
+            $port = getenv('DB_PORT');
+            $base = getenv('DB_NAME');
+            $utilisateur = getenv('DB_USER');
+            $motDePasse = getenv('DB_PASSWORD');
+
+            // sur Heroku : JawsDB donne tout dans une seule adresse
+            // mysql://utilisateur:motdepasse@hote:port/base
+            if (getenv('JAWSDB_URL')) {
+                $url = parse_url(getenv('JAWSDB_URL'));
+                $hote = $url['host'];
+                $port = $url['port'];
+                $base = ltrim($url['path'], '/');
+                $utilisateur = $url['user'];
+                $motDePasse = $url['pass'];
+            }
+
+            $dsn = 'mysql:host=' . $hote . ';port=' . $port . ';dbname=' . $base . ';charset=utf8mb4';
 
             try {
-                self::$pdo = new PDO($dsn, getenv('DB_USER'), getenv('DB_PASSWORD'));
+                self::$pdo = new PDO($dsn, $utilisateur, $motDePasse);
                 self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
