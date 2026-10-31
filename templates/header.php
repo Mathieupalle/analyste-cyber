@@ -26,6 +26,7 @@
             <a href="/classement">Classement</a>
 
             <?php if (isset($_SESSION['utilisateur'])) : ?>
+                <a href="/mes-parties">Mes parties</a>
                 <span class="pseudo"><?= htmlspecialchars($_SESSION['utilisateur']['pseudo']) ?></span>
                 <form method="post" action="/deconnexion">
                     <input type="hidden" name="csrf_token" value="<?= \App\Security\Csrf::getToken() ?>">

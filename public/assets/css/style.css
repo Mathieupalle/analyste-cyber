@@ -650,6 +650,33 @@ td {
     border-color: var(--cyan);
 }
 
+/* Classement et Mes parties */
+.page-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 40px;
+    padding-bottom: 64px;
+}
+
+.page-liste h1 {
+    font-size: 28px;
+}
+
+.badge-neutre {
+    border: 1px solid var(--bordure-claire);
+    color: var(--texte-secondaire);
+}
+
+.tableau-liste {
+    padding: 8px 20px;
+    overflow-x: auto;
+}
+
+.page-liste .boutons {
+    max-width: 320px;
+}
+
 /* Fin de partie */
 .page-fin {
     display: flex;

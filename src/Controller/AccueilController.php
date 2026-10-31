@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\SalleRepository;
+use App\Service\PartieService;
 
 class AccueilController
 {
@@ -10,6 +11,9 @@ class AccueilController
     {
         $salleRepository = new SalleRepository();
         $salles = $salleRepository->findAll();
+
+        $partieService = new PartieService();
+        $classement = $partieService->getClassement(3);
 
         $titre = 'Accueil';
 

@@ -171,6 +171,46 @@ class PartieService
         $this->partieRepository->terminer($partie['id_partie'], 'gagnee', $score, date('Y-m-d H:i:s'));
     }
 
+    // le classement avec la durée de chaque partie
+    public function getClassement(int $limite): array
+    {
+        $parties = $this->partieRepository->findClassement($limite);
+
+        foreach ($parties as $i => $partie) {
+            $parties[$i]['duree'] = strtotime($partie['date_fin']) - strtotime($partie['date_debut']);
+        }
+
+        return $parties;
+    }
+
+    // l'historique des parties d'un joueur
+    public function getHistorique(int $idUtilisateur): array
+    {
+        $parties = $this->partieRepository->findByUtilisateur($idUtilisateur);
+
+        foreach ($parties as $i => $partie) {
+            $duree = strtotime($partie['date_fin']) - strtotime($partie['date_debut']);
+
+            // une partie perdue peut être détectée après les 20 minutes : on affiche 20:00 au maximum
+            if ($duree > self::DUREE_MAX) {
+                $duree = self::DUREE_MAX;
+            }
+
+            $parties[$i]['duree'] = $duree;
+        }
+
+        return $parties;
+    }
+
+    // transforme des secondes en mm:ss (ex : 521 -> 08:41)
+    public static function formaterDuree(int $secondes): string
+    {
+        $minutes = intdiv($secondes, 60);
+        $reste = $secondes % 60;
+
+        return sprintf('%02d:%02d', $minutes, $reste);
+    }
+
     // les infos de la dernière partie pour la page de fin
     public function getResultat(int $idUtilisateur): ?array
     {

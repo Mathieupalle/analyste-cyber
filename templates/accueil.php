@@ -84,24 +84,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>soc_ninja</td>
-                        <td class="mono">06:12</td>
-                        <td class="mono gras">578</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>m.palle</td>
-                        <td class="mono">08:41</td>
-                        <td class="mono gras">389</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>blue_team13</td>
-                        <td class="mono">09:05</td>
-                        <td class="mono gras">345</td>
-                    </tr>
+                    <?php foreach ($classement as $i => $ligne) : ?>
+                        <tr>
+                            <td><?= $i + 1 ?></td>
+                            <td><?= htmlspecialchars($ligne['pseudo']) ?></td>
+                            <td class="mono"><?= \App\Service\PartieService::formaterDuree($ligne['duree']) ?></td>
+                            <td class="mono gras"><?= $ligne['score'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                    <?php if (empty($classement)) : ?>
+                        <tr>
+                            <td colspan="4">Personne n'a encore résolu l'enquête. Sois le premier !</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>

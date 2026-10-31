@@ -62,6 +62,37 @@ class PartieRepository
         return $partie;
     }
 
+    // les meilleures parties gagnées, tous joueurs confondus
+    public function findClassement(int $limite): array
+    {
+        $requete = $this->pdo->prepare(
+            "SELECT u.pseudo, p.score, p.date_debut, p.date_fin
+             FROM partie p
+             JOIN utilisateur u ON u.id_utilisateur = p.id_utilisateur
+             WHERE p.statut = 'gagnee'
+             ORDER BY p.score DESC
+             LIMIT :limite"
+        );
+        // LIMIT attend un nombre, on le précise à PDO
+        $requete->bindValue('limite', $limite, PDO::PARAM_INT);
+        $requete->execute();
+
+        return $requete->fetchAll();
+    }
+
+    // toutes les parties d'un joueur, de la plus récente à la plus ancienne
+    public function findByUtilisateur(int $idUtilisateur): array
+    {
+        $requete = $this->pdo->prepare(
+            "SELECT id_partie, date_debut, date_fin, statut, score FROM partie
+             WHERE id_utilisateur = :id_utilisateur AND statut != 'en_cours'
+             ORDER BY id_partie DESC"
+        );
+        $requete->execute(['id_utilisateur' => $idUtilisateur]);
+
+        return $requete->fetchAll();
+    }
+
     // abandonne la partie en cours quand le joueur en relance une
     public function abandonnerEnCours(int $idUtilisateur, string $dateFin): void
     {

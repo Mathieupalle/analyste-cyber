@@ -87,6 +87,21 @@ class PartieController
         echo json_encode($resultat);
     }
 
+    // page "Mes parties"
+    public function historique(): void
+    {
+        Auth::requireLogin();
+
+        $partieService = new PartieService();
+        $parties = $partieService->getHistorique($_SESSION['utilisateur']['id']);
+
+        $titre = 'Mes parties';
+
+        require __DIR__ . '/../../templates/header.php';
+        require __DIR__ . '/../../templates/partie/historique.php';
+        require __DIR__ . '/../../templates/footer.php';
+    }
+
     public function fin(): void
     {
         Auth::requireLogin();
