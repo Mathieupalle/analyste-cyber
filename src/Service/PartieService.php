@@ -154,8 +154,8 @@ class PartieService
         $indiceSecours = $indiceRepository->findTexte($enigme['id_enigme'], $numeroIndice);
 
         // on essaie d'abord le mentor IA
-        $mistralService = new MistralService();
-        $indiceIa = $mistralService->demanderIndice($enigme['titre'], $enigme['intitule'], $indiceSecours);
+        $groqService = new GroqService();
+        $indiceIa = $groqService->demanderIndice($enigme['titre'], $enigme['intitule'], $indiceSecours);
 
         // si l'IA ne répond pas, ou si elle donne la réponse par erreur, on garde l'indice de secours
         $reponseAttendue = $this->enigmeRepository->findReponse($enigme['id_enigme']);

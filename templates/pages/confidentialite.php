@@ -26,7 +26,7 @@
         <li>tes données ne sont ni vendues ni partagées</li>
     </ul>
     <p>
-        Le mentor IA (Mistral AI) reçoit seulement la question de la salle :
+        Le mentor IA (Groq) reçoit seulement la question de la salle :
         jamais ton pseudo, ton e-mail ou tes réponses.
     </p>
 

@@ -61,7 +61,7 @@ Il faut avoir installé le Heroku CLI et être connecté (`heroku login`).
 heroku create nom-de-l-application
 heroku addons:create jawsdb:kitefin
 heroku config:set MONGO_URI="mongodb+srv://utilisateur:motdepasse@cluster.mongodb.net" MONGO_DB=analyste_cyber
-heroku config:set MISTRAL_API_KEY=la_cle_mistral
+heroku config:set GROQ_API_KEY=la_cle_groq
 git push heroku main
 ```
 
@@ -83,4 +83,4 @@ heroku open
 - le site est en HTTPS (fourni par Heroku)
 - le fichier `.env` n'est pas envoyé (il est dans le `.gitignore`), les mots de passe sont dans les variables d'Heroku (`heroku config`)
 - les erreurs PHP ne s'affichent pas aux visiteurs
-- sans clé Mistral, les indices de secours s'affichent quand même
+- sans clé Groq, les indices de secours s'affichent quand même

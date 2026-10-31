@@ -38,7 +38,7 @@ CREATE TABLE enigme (
     FOREIGN KEY (id_salle) REFERENCES salle(id_salle) ON DELETE CASCADE
 );
 
--- indices écrits à la main, utilisés si l'API Mistral ne répond pas
+-- indices écrits à la main, utilisés si l'API Groq ne répond pas
 CREATE TABLE indice (
     id_indice INT AUTO_INCREMENT PRIMARY KEY,
     texte VARCHAR(255) NOT NULL,

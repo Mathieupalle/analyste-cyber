@@ -2,16 +2,16 @@
 
 namespace App\Service;
 
-class MistralService
+class GroqService
 {
-    const URL = 'https://api.mistral.ai/v1/chat/completions';
-    const MODELE = 'mistral-small-latest';
+    const URL = 'https://api.groq.com/openai/v1/chat/completions';
+    const MODELE = 'openai/gpt-oss-120b';
 
     // demande au mentor IA de reformuler un indice
     // renvoie null si l'API ne répond pas (on utilisera alors l'indice de secours)
     public function demanderIndice(string $titreSalle, string $question, string $indiceSecours): ?string
     {
-        $cle = getenv('MISTRAL_API_KEY');
+        $cle = getenv('GROQ_API_KEY');
 
         if (empty($cle)) {
             return null;
@@ -20,13 +20,14 @@ class MistralService
         // la bonne réponse n'est jamais envoyée à l'API
         $donnees = [
             'model' => self::MODELE,
-            'max_tokens' => 120,
+            'max_tokens' => 300,
+            'reasoning_effort' => 'low', // le modèle réfléchit peu avant de répondre (plus rapide)
             'messages' => [
                 [
                     'role' => 'system',
                     'content' => 'Tu es un mentor en cybersécurité dans un escape game. Tu aides un analyste junior '
                         . 'avec un indice court (2 phrases maximum), en français, en le tutoyant. '
-                        . 'Tu ne donnes jamais la réponse.',
+                        . 'Tu ne donnes jamais la réponse. Texte simple, sans mise en forme.',
                 ],
                 [
                     'role' => 'user',
