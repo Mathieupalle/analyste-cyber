@@ -1,5 +1,5 @@
 -- Création de la base de données Analyste cyber
--- (sur JawsDB la base existe déjà, il faut enlever les 2 lignes suivantes)
+-- (sur JawsDB la base existe déjà : installer-base.php enlève les 2 lignes suivantes)
 CREATE DATABASE IF NOT EXISTS analyste_cyber CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE analyste_cyber;
 SET NAMES utf8mb4;

@@ -148,14 +148,17 @@ class AdminService
     // supprime un joueur et tout son historique (droit à l'effacement, RGPD)
     public function supprimerJoueur(int $idUtilisateur): void
     {
-        // on récupère ses parties pour effacer aussi leur historique dans MongoDB
+        // on récupère ses parties avant de supprimer le compte
         $idsParties = $this->partieRepository->findIdsByUtilisateur($idUtilisateur);
 
-        $evenementRepository = new EvenementRepository();
-        $evenementRepository->supprimerParParties($idsParties);
-
         // dans MySQL, les parties, réponses et indices partent avec le compte (ON DELETE CASCADE)
-        $this->utilisateurRepository->delete($idUtilisateur);
+        $supprime = $this->utilisateurRepository->delete($idUtilisateur);
+
+        // si le compte a bien été supprimé (pas un admin), on efface aussi son historique dans MongoDB
+        if ($supprime) {
+            $evenementRepository = new EvenementRepository();
+            $evenementRepository->supprimerParParties($idsParties);
+        }
     }
 
     // une partie et ses événements enregistrés dans MongoDB

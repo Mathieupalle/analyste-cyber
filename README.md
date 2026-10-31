@@ -67,7 +67,7 @@ git push heroku main
 
 - Le fichier `Procfile` indique à Heroku de servir le site depuis le dossier `public/`.
 - JawsDB crée automatiquement la variable `JAWSDB_URL`, lue par `src/Config/Database.php`.
-- Les extensions PHP (`pdo_mysql`, `mongodb`) sont installées par Heroku grâce au `composer.json`.
+- Les extensions PHP (`mbstring`, `mongodb`) sont activées par Heroku grâce au `composer.json`.
 
 ### 3. Installer les données
 

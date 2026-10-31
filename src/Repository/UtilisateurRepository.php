@@ -81,10 +81,13 @@ class UtilisateurRepository
 
     // supprime un compte joueur (ses parties sont supprimées grâce au ON DELETE CASCADE)
     // id_role = 1 : on ne peut pas supprimer un admin, même en modifiant le formulaire
-    public function delete(int $idUtilisateur): void
+    // renvoie true si un compte a bien été supprimé
+    public function delete(int $idUtilisateur): bool
     {
         $requete = $this->pdo->prepare('DELETE FROM utilisateur WHERE id_utilisateur = :id_utilisateur AND id_role = 1');
         $requete->execute(['id_utilisateur' => $idUtilisateur]);
+
+        return $requete->rowCount() > 0;
     }
 
     // crée un compte admin (utilisé par le script database/creer-admin.php)
