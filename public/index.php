@@ -5,6 +5,7 @@ session_start();
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controller\AccueilController;
+use App\Controller\AdminController;
 use App\Controller\AuthController;
 use App\Controller\ClassementController;
 use App\Controller\PartieController;
@@ -66,6 +67,26 @@ switch ($url) {
     case '/partie/fin':
         $controller = new PartieController();
         $controller->fin();
+        break;
+
+    case '/admin':
+        $controller = new AdminController();
+        $controller->tableauDeBord();
+        break;
+
+    case '/admin/enigmes':
+        $controller = new AdminController();
+        $controller->enigmes();
+        break;
+
+    case '/admin/joueurs':
+        $controller = new AdminController();
+        $controller->joueurs();
+        break;
+
+    case '/admin/partie':
+        $controller = new AdminController();
+        $controller->partie();
         break;
 
     default:

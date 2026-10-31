@@ -23,6 +23,12 @@ docker compose exec app php database/mongo/import-journaux.php
 
 La dernière commande importe les faux journaux de connexion (salle 2) dans MongoDB.
 
+Pour créer un compte administrateur :
+
+```bash
+docker compose exec app php database/creer-admin.php pseudo email motdepasse
+```
+
 - site : http://localhost:8090
 - phpMyAdmin : http://localhost:8091
 - tests : `docker compose exec app vendor/bin/phpunit`

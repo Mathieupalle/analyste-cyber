@@ -31,7 +31,5 @@ INSERT INTO indice (texte, ordre, id_enigme) VALUES
 ('Tout a commencé par un e-mail.', 1, 4),
 ('Il faut trouver le mot de passe avant de pouvoir se connecter.', 2, 4);
 
--- compte admin : créer le hash avec
--- php -r "echo password_hash('MonMotDePasse', PASSWORD_DEFAULT);"
--- INSERT INTO utilisateur (pseudo, email, mot_de_passe, id_role)
--- VALUES ('admin', 'admin@calanques-bio.test', 'COLLER_LE_HASH_ICI', 2);
+-- le compte admin se crée avec le script database/creer-admin.php
+-- (pour ne pas écrire de mot de passe dans ce fichier)

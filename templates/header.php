@@ -27,6 +27,9 @@
 
             <?php if (isset($_SESSION['utilisateur'])) : ?>
                 <a href="/mes-parties">Mes parties</a>
+                <?php if ($_SESSION['utilisateur']['role'] === 'admin') : ?>
+                    <a href="/admin">Admin</a>
+                <?php endif; ?>
                 <span class="pseudo"><?= htmlspecialchars($_SESSION['utilisateur']['pseudo']) ?></span>
                 <form method="post" action="/deconnexion">
                     <input type="hidden" name="csrf_token" value="<?= \App\Security\Csrf::getToken() ?>">

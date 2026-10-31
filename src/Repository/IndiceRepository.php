@@ -30,4 +30,15 @@ class IndiceRepository
 
         return $texte;
     }
+
+    // admin : modifie le texte de l'indice n°1 ou n°2 d'une énigme
+    public function update(int $idEnigme, int $ordre, string $texte): void
+    {
+        $requete = $this->pdo->prepare('UPDATE indice SET texte = :texte WHERE id_enigme = :id_enigme AND ordre = :ordre');
+        $requete->execute([
+            'texte' => $texte,
+            'id_enigme' => $idEnigme,
+            'ordre' => $ordre,
+        ]);
+    }
 }

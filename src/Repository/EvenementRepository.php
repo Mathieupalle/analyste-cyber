@@ -44,4 +44,14 @@ class EvenementRepository
 
         return $resultat->toArray();
     }
+
+    // supprime l'historique de plusieurs parties (quand on supprime un joueur)
+    public function supprimerParParties(array $idsParties): void
+    {
+        try {
+            $this->collection->deleteMany(['id_partie' => ['$in' => $idsParties]]);
+        } catch (Exception $e) {
+            // MongoDB indisponible : on supprime quand même le compte dans MySQL
+        }
+    }
 }

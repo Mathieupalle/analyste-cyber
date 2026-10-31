@@ -50,4 +50,14 @@ class DemandeIndiceRepository
 
         return (int) $requete->fetchColumn();
     }
+
+    // admin : nombre total d'indices, et combien viennent du mentor IA
+    public function compterTout(): array
+    {
+        $requete = $this->pdo->query(
+            "SELECT COUNT(*) AS total, SUM(CASE WHEN source = 'ia' THEN 1 ELSE 0 END) AS ia FROM demande_indice"
+        );
+
+        return $requete->fetch();
+    }
 }
