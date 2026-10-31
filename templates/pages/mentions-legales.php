@@ -5,7 +5,7 @@
     <p>
         Mathieu Palle<br>
         Projet réalisé dans le cadre de la formation Développeur Web et Web Mobile (Studi).<br>
-        Contact : <a href="mailto:ADRESSE_EMAIL">ADRESSE_EMAIL</a>
+        Contact : <a href="mailto:mathieu.palle@outlook.fr">mathieu.palle@outlook.fr</a>
     </p>
     <p>Directeur de la publication : Mathieu Palle.</p>
 

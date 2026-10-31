@@ -49,7 +49,7 @@
     <h2>Tes droits</h2>
     <p>
         Tu peux demander à voir, corriger ou supprimer tes données en écrivant à
-        <a href="mailto:ADRESSE_EMAIL">ADRESSE_EMAIL</a>.
+        <a href="mailto:mathieu.palle@outlook.fr">mathieu.palle@outlook.fr</a>.
         Si tu n'as pas de réponse, tu peux contacter la CNIL sur <a href="https://www.cnil.fr">cnil.fr</a>.
     </p>
 </main>
