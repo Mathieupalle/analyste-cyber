@@ -8,12 +8,10 @@ RUN pecl install mongodb && docker-php-ext-enable mongodb
 # pour que le .htaccess fonctionne
 RUN a2enmod rewrite
 
+# configuration d'Apache : le site est dans le dossier public
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
 # composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# le site est dans le dossier public
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri 's!AllowOverride None!AllowOverride All!g' /etc/apache2/apache2.conf
 
 WORKDIR /var/www/html
