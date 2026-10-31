@@ -11,6 +11,7 @@ use App\Controller\AccueilController;
 use App\Controller\AdminController;
 use App\Controller\AuthController;
 use App\Controller\ClassementController;
+use App\Controller\PageController;
 use App\Controller\PartieController;
 
 // on récupère l'adresse demandée, sans les paramètres après le ?
@@ -90,6 +91,16 @@ switch ($url) {
     case '/admin/partie':
         $controller = new AdminController();
         $controller->partie();
+        break;
+
+    case '/mentions-legales':
+        $controller = new PageController();
+        $controller->mentionsLegales();
+        break;
+
+    case '/confidentialite':
+        $controller = new PageController();
+        $controller->confidentialite();
         break;
 
     default:
