@@ -1,0 +1,492 @@
+/* Couleurs de la charte graphique */
+:root {
+    --fond: #0B1220;
+    --surface: #121A2B;
+    --bordure: #1E2A42;
+    --bordure-claire: #2B3A57;
+    --texte: #E6EDF7;
+    --texte-secondaire: #9AA8BF;
+    --texte-discret: #7D8BA3;
+    --cyan: #22D3EE;
+    --cyan-clair: #67E8F9;
+    --cyan-fonce: #0B2F3A;
+    --vert: #34D399;
+    --rouge: #F87171;
+    --rouge-clair: #FCA5A5;
+    --rouge-fonce: #2A1219;
+    --jaune: #FCD34D;
+}
+
+/* Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--fond);
+    color: var(--texte);
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--cyan-clair);
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    font-size: 34px;
+    line-height: 1.1;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+.conteneur {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.gras {
+    font-weight: 700;
+}
+
+.rouge {
+    color: var(--rouge);
+}
+
+.vert {
+    color: var(--vert);
+}
+
+.jaune {
+    color: var(--jaune);
+}
+
+.petit-texte {
+    font-size: 13px;
+    color: var(--texte-secondaire);
+}
+
+.sur-titre {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--cyan-clair);
+}
+
+/* Boutons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-principal {
+    background-color: var(--cyan);
+    color: #062430;
+}
+
+.btn-principal:hover {
+    background-color: var(--cyan-clair);
+}
+
+.btn-secondaire {
+    border: 1px solid var(--bordure-claire);
+    color: var(--texte);
+}
+
+.btn-secondaire:hover {
+    border-color: var(--texte-secondaire);
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge-alerte {
+    background-color: var(--rouge-fonce);
+    border: 1px solid #6B1D2C;
+    color: var(--rouge-clair);
+}
+
+/* Carte */
+.carte {
+    background-color: var(--surface);
+    border: 1px solid var(--bordure);
+    border-radius: 12px;
+}
+
+/* En-tête */
+.entete {
+    border-bottom: 1px solid var(--bordure);
+}
+
+.entete-contenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--texte);
+}
+
+.bouton-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* le menu est caché sur mobile, il s'ouvre avec le bouton */
+.menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 20px;
+}
+
+.menu.ouvert {
+    display: flex;
+}
+
+.menu a {
+    color: var(--texte-secondaire);
+}
+
+.menu a:hover {
+    color: var(--texte);
+}
+
+.menu .btn-principal {
+    color: #062430;
+}
+
+/* Bannière */
+.banniere {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.banniere-texte {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.texte-intro {
+    font-size: 16px;
+    color: var(--texte-secondaire);
+}
+
+.boutons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.infos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--texte-secondaire);
+}
+
+.infos li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* faux journal de connexion */
+.journal {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+}
+
+.journal-titre {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--bordure);
+    color: var(--texte-secondaire);
+}
+
+.journal-lignes {
+    padding: 18px;
+    line-height: 2;
+    color: var(--texte-secondaire);
+}
+
+/* Sections */
+.section {
+    padding-bottom: 32px;
+}
+
+.section-titre {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.section-titre h2 {
+    margin-top: 8px;
+}
+
+/* Cartes des salles */
+.grille-salles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.salle {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+}
+
+.salle .description {
+    font-size: 14px;
+    color: var(--texte-secondaire);
+}
+
+.icone-salle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background-color: var(--cyan-fonce);
+}
+
+/* Classement et score */
+.classement-score {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.top3,
+.calcul-score {
+    padding: 20px;
+}
+
+.carte-titre {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.carte-titre a {
+    font-size: 13px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--texte-discret);
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--bordure);
+}
+
+td {
+    padding: 12px 8px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--bordure);
+}
+
+.calcul-score h3 {
+    margin-bottom: 14px;
+}
+
+.calcul-score li {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--texte-secondaire);
+}
+
+/* Pied de page */
+.pied-de-page {
+    border-top: 1px solid var(--bordure);
+    font-size: 13px;
+    color: var(--texte-discret);
+}
+
+.pied-de-page-contenu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.pied-de-page a {
+    color: var(--texte-discret);
+}
+
+.pied-de-page a:hover {
+    color: var(--texte);
+}
+
+/* Tablette */
+@media (min-width: 768px) {
+    .grille-salles {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .boutons {
+        flex-direction: row;
+        width: auto;
+    }
+
+    .section-titre {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .pied-de-page-contenu {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Ordinateur */
+@media (min-width: 1024px) {
+    .conteneur {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+
+    h1 {
+        font-size: 56px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .texte-intro {
+        font-size: 19px;
+    }
+
+    /* le menu est toujours visible, plus besoin du bouton */
+    .bouton-menu {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 28px;
+        width: auto;
+        padding-top: 0;
+    }
+
+    .banniere {
+        flex-direction: row;
+        align-items: center;
+        gap: 64px;
+        padding-top: 88px;
+        padding-bottom: 88px;
+    }
+
+    .banniere-texte {
+        flex: 1;
+    }
+
+    .journal {
+        width: 520px;
+    }
+
+    .grille-salles {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .salle {
+        padding: 24px;
+    }
+
+    .classement-score {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .top3 {
+        flex: 1;
+        padding: 28px;
+    }
+
+    .calcul-score {
+        width: 460px;
+        padding: 28px;
+    }
+
+    .section {
+        padding-bottom: 64px;
+    }
+}
