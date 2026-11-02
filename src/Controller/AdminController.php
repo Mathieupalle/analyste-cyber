@@ -64,6 +64,7 @@ class AdminController
 
         $adminService = new AdminService();
         $message = '';
+        $erreur = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Csrf::verifier();
@@ -72,11 +73,11 @@ class AdminController
 
             // l'admin ne peut pas supprimer son propre compte
             if ($idUtilisateur === (int) $_SESSION['utilisateur']['id']) {
-                $message = 'Tu ne peux pas supprimer ton propre compte.';
+                $erreur = 'Tu ne peux pas supprimer ton propre compte.';
             } elseif ($adminService->supprimerJoueur($idUtilisateur)) {
                 $message = 'Le compte a été supprimé.';
             } else {
-                $message = 'Ce compte ne peut pas être supprimé.';
+                $erreur = 'Ce compte ne peut pas être supprimé.';
             }
         }
 
