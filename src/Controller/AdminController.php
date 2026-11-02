@@ -73,9 +73,10 @@ class AdminController
             // l'admin ne peut pas supprimer son propre compte
             if ($idUtilisateur === (int) $_SESSION['utilisateur']['id']) {
                 $message = 'Tu ne peux pas supprimer ton propre compte.';
-            } else {
-                $adminService->supprimerJoueur($idUtilisateur);
+            } elseif ($adminService->supprimerJoueur($idUtilisateur)) {
                 $message = 'Le compte a été supprimé.';
+            } else {
+                $message = 'Ce compte ne peut pas être supprimé.';
             }
         }
 

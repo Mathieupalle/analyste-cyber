@@ -146,7 +146,8 @@ class AdminService
     }
 
     // supprime un joueur et tout son historique (droit à l'effacement, RGPD)
-    public function supprimerJoueur(int $idUtilisateur): void
+    // renvoie true si le compte a bien été supprimé
+    public function supprimerJoueur(int $idUtilisateur): bool
     {
         // on récupère ses parties avant de supprimer le compte
         $idsParties = $this->partieRepository->findIdsByUtilisateur($idUtilisateur);
@@ -159,6 +160,8 @@ class AdminService
             $evenementRepository = new EvenementRepository();
             $evenementRepository->supprimerParParties($idsParties);
         }
+
+        return $supprime;
     }
 
     // une partie et ses événements enregistrés dans MongoDB

@@ -6,9 +6,10 @@ La PME Calanques Bio (fictive) a été piratée. Le joueur est analyste junior e
 
 ## Technologies
 
-- PHP 8 (architecture Controller / Service / Repository)
+- PHP 8.3 (architecture Controller / Service / Repository)
 - MySQL et MongoDB
-- HTML, CSS, JavaScript
+- HTML, CSS, JavaScript (Chart.js pour les graphiques de l'admin)
+- API Groq pour le mentor IA (indices)
 - Docker
 - PHPUnit
 
