@@ -7,6 +7,10 @@
         <div class="message message-succes"><p><?= htmlspecialchars($message) ?></p></div>
     <?php endif; ?>
 
+    <?php if ($erreur !== '') : ?>
+        <div class="message message-erreur"><p><?= htmlspecialchars($erreur) ?></p></div>
+    <?php endif; ?>
+
     <div class="carte tableau-liste">
         <table>
             <thead>
